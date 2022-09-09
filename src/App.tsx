@@ -6,7 +6,6 @@ import ResponsiveAppBar from './modules/shared/responsiveAppBar/responsiveAppBar
 function App() {
   return (
     <div className="App">
-      {/* <ResponsiveAppBar /> */}
       <header className="App-header">
         <img src={logo} className="App-logo" alt="Figus Tracker" />
         <p>

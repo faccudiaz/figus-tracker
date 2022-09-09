@@ -5,8 +5,6 @@ import "../node_modules/flag-icons/css/flag-icons.min.css";
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Stickers from './routes/expenses';
-import Invoices from './routes/invoices';
 import ResponsiveAppBar from './modules/shared/responsiveAppBar/responsiveAppBar';
 import StickersPage from './modules/stickers/pages/stickersPage';
 

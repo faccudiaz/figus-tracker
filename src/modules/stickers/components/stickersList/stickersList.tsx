@@ -3,7 +3,7 @@ import { Grid, Typography } from '@mui/material'
 import { stickersMock } from '../../mocks/stickersMock'
 
 const StickersList = () => {
-    const [teams, setTeams] = useState(stickersMock.teams)
+    const [teams] = useState(stickersMock.teams)
 
     return (
         <Grid container spacing={2}>
