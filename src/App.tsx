@@ -1,7 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import ResponsiveAppBar from './modules/shared/responsiveAppBar/responsiveAppBar';
+// import ResponsiveAppBar from './modules/shared/responsiveAppBar/responsiveAppBar';
 
 function App() {
   return (
