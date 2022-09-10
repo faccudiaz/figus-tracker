@@ -5,7 +5,7 @@ import "../node_modules/flag-icons/css/flag-icons.min.css";
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import ResponsiveAppBar from './modules/shared/responsiveAppBar/responsiveAppBar';
+import ResponsiveAppBar from './modules/shared/components/responsiveAppBar/responsiveAppBar';
 import StickersPage from './modules/stickers/pages/stickersPage';
 
 const root = ReactDOM.createRoot(
