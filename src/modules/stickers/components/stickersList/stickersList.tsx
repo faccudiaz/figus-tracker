@@ -1,18 +1,11 @@
 import React, { useState } from 'react'
 import { Grid, Typography } from '@mui/material'
 import MockV1 from '../../mocks/stickersMockV1.json'
-import { styled } from '@mui/material/styles';
-import Paper from '@mui/material/Paper';
+import Item from '../../../shared/components/item/item';
 
 const StickersList = () => {
     const [stickers] = useState(MockV1)
-    const Item = styled(Paper)(({ theme }) => ({
-        backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-        ...theme.typography.body2,
-        padding: theme.spacing(1),
-        textAlign: 'center',
-        color: theme.palette.text.secondary,
-    }));
+
     return (
         <Grid container spacing={2}>
             <Grid item xs={12}>
