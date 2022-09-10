@@ -17,20 +17,6 @@ const StickersPage = () => {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <StickersList />
-      <Grid container spacing={2} style={{ marginTop: 0 }}>
-        <Grid item xs={8}>
-          <Item>xs=8</Item>
-        </Grid>
-        <Grid item xs={4}>
-          <Item>xs=4</Item>
-        </Grid>
-        <Grid item xs={4}>
-          <Item>xs=4</Item>
-        </Grid>
-        <Grid item xs={8}>
-          <Item>xs=8</Item>
-        </Grid>
-      </Grid>
     </Box>
   )
 }
