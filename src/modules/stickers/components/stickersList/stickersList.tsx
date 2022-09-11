@@ -44,7 +44,7 @@ const StickersList: React.FC<StickersListProps> = ({ userStickers, fetchUserStic
                             </Grid>
                         ))}
                     </Grid>
-                </>
+                </div>
             </Grid>
         </Grid>
     )
