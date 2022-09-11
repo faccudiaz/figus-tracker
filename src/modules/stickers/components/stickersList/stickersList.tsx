@@ -1,4 +1,4 @@
-// eslint-disable-next-line react-hooks/exhaustive-deps
+
 import React, { useState, useEffect } from 'react'
 import { Grid, Typography } from '@mui/material'
 import MockV1 from '../../mocks/stickersMockV1.json'
@@ -18,6 +18,7 @@ const StickersList: React.FC<StickersListProps> = ({ userStickers, fetchUserStic
 
     useEffect(() => {
         fetchUserStickers()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     const handleClickSticker = async (sticker: StickerModel) => {
