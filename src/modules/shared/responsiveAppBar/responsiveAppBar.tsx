@@ -88,12 +88,10 @@ const ResponsiveAppBar = () => {
                                 display: { xs: 'block', md: 'none' },
                             }}
                         >
-                            {/* {pages.map((page) => (
-                                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                                    <Typography textAlign="center">{page}</Typography>
-                                </MenuItem>
-                            ))} */}
-                            <Link to="/stickers"><Typography textAlign="center">Stickers</Typography></Link> |{" "}
+                            <MenuItem key={'Stickers'}>
+                                {/* <Typography textAlign="center">{page}</Typography> */}
+                                <Link to="/stickers"><Typography textAlign="center">Stickers</Typography></Link>
+                            </MenuItem>
                             {/* <Link to="/expenses">Expenses</Link> */}
                         </Menu>
                     </Box>
@@ -114,7 +112,7 @@ const ResponsiveAppBar = () => {
                             textDecoration: 'none',
                         }}
                     >
-                        LOGO
+                        Figus Tracker
                     </Typography>
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
 
