@@ -1,10 +1,31 @@
-import React, { useState } from 'react'
+
+import React, { useState, useEffect } from 'react'
 import { Grid, Typography } from '@mui/material'
 import MockV1 from '../../mocks/stickersMockV1.json'
+// import Item from '../../../shared/components/item/item';
+import { StickerModel } from './stickersListContainer';
 import Item from '../../../shared/components/item/item';
 
-const StickersList = () => {
+interface StickersListProps {
+    fetchUserStickers: Function,
+    addUserSticker: Function,
+    removeUserSticker: Function,
+    userStickers: StickerModel[]
+}
+
+const StickersList: React.FC<StickersListProps> = ({ userStickers, fetchUserStickers, addUserSticker, removeUserSticker }) => {
     const [stickers] = useState(MockV1)
+
+    useEffect(() => {
+        fetchUserStickers()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
+
+    const handleClickSticker = async (sticker: StickerModel) => {
+        userStickers.some(userSticker => userSticker.code === sticker.code)
+            ? removeUserSticker(sticker)
+            : addUserSticker(sticker)
+    }
 
     return (
         <Grid container spacing={2}>
@@ -13,10 +34,15 @@ const StickersList = () => {
                     <Typography>
                         Mis figuritas
                     </Typography>
-                    <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 6, sm: 12, md: 12 }}>
+                    <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 6, sm: 12, md: 40 }}>
                         {stickers.map((sticker, index) => (
                             <Grid item xs={2} sm={4} md={4} key={index}>
-                                <Item>{sticker.code}</Item>
+                                <Item
+                                    onClick={() => handleClickSticker(sticker)}
+                                    style={{ backgroundColor: userStickers.some(userSticker => userSticker.code === sticker.code) ? 'green' : '' }}
+                                >
+                                    <span>{sticker.code}</span>
+                                </Item>
                             </Grid>
                         ))}
                     </Grid>

@@ -88,13 +88,9 @@ const ResponsiveAppBar = () => {
                                 display: { xs: 'block', md: 'none' },
                             }}
                         >
-                            {/* {pages.map((page) => (
-                                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                                    <Typography textAlign="center">{page}</Typography>
-                                </MenuItem>
-                            ))} */}
-                            <Link to="/stickers"><Typography textAlign="center">Stickers</Typography></Link> |{" "}
-                            {/* <Link to="/expenses">Expenses</Link> */}
+                            <MenuItem key={'Stickers'}>
+                                <Link to="/stickers"><Typography textAlign="center">Stickers</Typography></Link>
+                            </MenuItem>
                         </Menu>
                     </Box>
                     <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
@@ -114,7 +110,7 @@ const ResponsiveAppBar = () => {
                             textDecoration: 'none',
                         }}
                     >
-                        LOGO
+                        Figus Tracker
                     </Typography>
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
 

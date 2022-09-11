@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import StickersList from '../../components/stickersList/stickersList';
+import StickersList from '../../components/stickersList';
 
 const StickersPage = () => {
   return (
