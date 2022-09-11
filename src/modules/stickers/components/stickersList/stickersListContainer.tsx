@@ -30,6 +30,7 @@ const StickersListContainer = () => {
             await setDoc(doc(db, "stickers", sticker.code), {
                 ...sticker
             });
+            setUserStickers([...userStickers, sticker])
             console.log("stickers written");
         } catch (e) {
             console.error("Error adding document: ", e);
@@ -40,6 +41,9 @@ const StickersListContainer = () => {
         console.log('remove')
         try {
             await deleteDoc(doc(db, "stickers", sticker.code));
+            setUserStickers(userStickers.filter(function (userSticker) {
+                return userSticker.code !== sticker.code
+            }))
             console.log("sticker remove");
         } catch (e) {
             console.error("Error removing sticker: ", e);
