@@ -1,4 +1,5 @@
-import React, { useState, useEffect, MouseEvent } from 'react'
+// eslint-disable-next-line react-hooks/exhaustive-deps
+import React, { useState, useEffect } from 'react'
 import { Grid, Typography } from '@mui/material'
 import MockV1 from '../../mocks/stickersMockV1.json'
 // import Item from '../../../shared/components/item/item';
