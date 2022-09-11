@@ -89,10 +89,8 @@ const ResponsiveAppBar = () => {
                             }}
                         >
                             <MenuItem key={'Stickers'}>
-                                {/* <Typography textAlign="center">{page}</Typography> */}
                                 <Link to="/stickers"><Typography textAlign="center">Stickers</Typography></Link>
                             </MenuItem>
-                            {/* <Link to="/expenses">Expenses</Link> */}
                         </Menu>
                     </Box>
                     <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />

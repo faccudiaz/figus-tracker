@@ -28,7 +28,7 @@ const StickersList: React.FC<StickersListProps> = ({ userStickers, fetchUserStic
     return (
         <Grid container spacing={2}>
             <Grid item xs={12}>
-                <>
+                <div style={{ display: 'grid', gap: 20 }}>
                     <Typography>
                         Mis figuritas
                     </Typography>
