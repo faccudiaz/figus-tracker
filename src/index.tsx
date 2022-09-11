@@ -5,8 +5,10 @@ import "../node_modules/flag-icons/css/flag-icons.min.css";
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import ResponsiveAppBar from './modules/shared/responsiveAppBar/responsiveAppBar';
+import ResponsiveAppBar from './modules/shared/components/responsiveAppBar/responsiveAppBar';
 import StickersPage from './modules/stickers/pages/stickersPage';
+// import { ReactReduxFirebaseProvider } from 'react-redux-firebase';
+// import { createFirestoreInstance } from 'redux-firestore';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement

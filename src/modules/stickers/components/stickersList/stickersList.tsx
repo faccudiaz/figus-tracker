@@ -1,8 +1,9 @@
 import React, { useState, useEffect, MouseEvent } from 'react'
 import { Grid, Typography } from '@mui/material'
 import MockV1 from '../../mocks/stickersMockV1.json'
-import Item from '../../../shared/components/item/item';
+// import Item from '../../../shared/components/item/item';
 import { StickerModel } from './stickersListContainer';
+import Item from '../../../shared/components/item/item';
 
 interface StickersListProps {
     fetchUserStickers: Function,
@@ -43,7 +44,7 @@ const StickersList: React.FC<StickersListProps> = ({ userStickers, fetchUserStic
                             </Grid>
                         ))}
                     </Grid>
-                </div>
+                </>
             </Grid>
         </Grid>
     )

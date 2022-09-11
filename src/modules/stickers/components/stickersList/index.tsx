@@ -1,2 +1,2 @@
-import StickersList from "./stickersListContainer";
-export default StickersList
+import StickersListC from "./stickersListContainer";
+export default StickersListC
