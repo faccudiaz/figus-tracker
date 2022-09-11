@@ -39,7 +39,7 @@ const StickersList: React.FC<StickersListProps> = ({ userStickers, fetchUserStic
                             <Grid item xs={2} sm={4} md={4} key={index}>
                                 <Item
                                     onClick={() => handleClickSticker(sticker)}
-                                    style={{ backgroundColor: userStickers.some(userSticker => userSticker.code === sticker.code) ? 'green' : '' }}
+                                    style={{ cursor: "pointer", backgroundColor: userStickers.some(userSticker => userSticker.code === sticker.code) ? 'green' : '' }}
                                 >
                                     <span>{sticker.code}</span>
                                 </Item>
