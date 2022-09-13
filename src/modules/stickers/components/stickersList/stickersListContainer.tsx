@@ -1,5 +1,5 @@
 import { collection, deleteDoc, doc, getDocs, setDoc } from 'firebase/firestore';
-import React, { useState } from 'react'
+import React, { useCallback, useState } from 'react'
 import { db } from '../../../../utils/firebase';
 import StickersList from './stickersList'
 import MockV1 from '../../mocks/stickersMockV1.json'
@@ -16,11 +16,11 @@ const StickersListContainer = () => {
     const [stickers, setStickers] = useState<StickerModel[]>([])
     const [userStickers, setUserStickers] = useState<StickerModel[]>([])
 
-    const fetchAllStickers = () => {
+    const fetchAllStickers = useCallback(() => {
         setStickers([...MockV1])
-    }
+    }, [])
 
-    const fetchUserStickers = async () => {
+    const fetchUserStickers = useCallback(async () => {
         getDocs(collection(db, "stickers"))
             .then((querySnapshot => {
                 let arr: any = [];
@@ -30,9 +30,9 @@ const StickersListContainer = () => {
                 // console.log({ arr })
                 setUserStickers([...userStickers, ...arr]);
             }));
-    }
+    }, [userStickers])
 
-    const addUserSticker = async (sticker: StickerModel) => {
+    const addUserSticker = useCallback(async (sticker: StickerModel) => {
         try {
             await setDoc(doc(db, "stickers", sticker.code), {
                 ...sticker
@@ -42,9 +42,9 @@ const StickersListContainer = () => {
         } catch (e) {
             console.error("Error adding document: ", e);
         }
-    }
+    }, [userStickers])
 
-    const removeUserSticker = async (sticker: StickerModel) => {
+    const removeUserSticker = useCallback(async (sticker: StickerModel) => {
         try {
             await deleteDoc(doc(db, "stickers", sticker.code));
             setUserStickers(userStickers.filter(function (userSticker) {
@@ -54,18 +54,17 @@ const StickersListContainer = () => {
         } catch (e) {
             console.error("Error removing sticker: ", e);
         }
-    }
+    }, [userStickers])
 
     const handleOrderBy = (orderBy: string) => {
-        // console.log({ orderBy })
         orderBy === 'all' && sortStickersByAll();
         orderBy === 'countries' && sortStickersByCountries();
-        orderBy === 'groups' && sortStickersByGroups();
+        // orderBy === 'groups' && sortStickersByGroups();
     }
 
     const sortStickersByAll = () => setStickers(mockStickers)
 
-    const sortStickersByGroups = () => setStickers(mockStickers)
+    // const sortStickersByGroups = () => setStickers(mockStickers)
 
     const sortStickersByCountries = () => {
         const stickersOfCountries: StickerModel[] = mockStickers.filter(sticker => 'country' in sticker)
