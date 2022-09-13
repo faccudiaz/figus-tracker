@@ -1,22 +1,29 @@
 
 import React, { useState, useEffect } from 'react'
 import { Grid, Typography } from '@mui/material'
-import MockV1 from '../../mocks/stickersMockV1.json'
-// import Item from '../../../shared/components/item/item';
 import { StickerModel } from './stickersListContainer';
-import Item from '../../../shared/components/item/item';
+import { SelectChangeEvent } from '@mui/material/Select';
+import HeaderStickerlist from './headerStickerList/headerStickerlist';
+import ViewAllStickers from './viewAllStickers/viewAllStickers';
+import ViewStickersByCountry from './viewStickersByCountry/viewStickersByCountry';
 
 interface StickersListProps {
     fetchUserStickers: Function,
+    fetchAllStickers: Function,
     addUserSticker: Function,
     removeUserSticker: Function,
-    userStickers: StickerModel[]
+    userStickers: StickerModel[],
+    stickers: StickerModel[],
+    handleOrderBy: Function,
 }
 
-const StickersList: React.FC<StickersListProps> = ({ userStickers, fetchUserStickers, addUserSticker, removeUserSticker }) => {
-    const [stickers] = useState(MockV1)
+const StickersList: React.FC<StickersListProps> = ({
+    userStickers, stickers, fetchAllStickers, fetchUserStickers, addUserSticker, removeUserSticker, handleOrderBy,
+}) => {
+    const [orderBy, setOrderBy] = React.useState('all');
 
     useEffect(() => {
+        fetchAllStickers()
         fetchUserStickers()
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
@@ -27,25 +34,40 @@ const StickersList: React.FC<StickersListProps> = ({ userStickers, fetchUserStic
             : addUserSticker(sticker)
     }
 
+    const handleChange = (event: SelectChangeEvent) => {
+        setOrderBy(event.target.value as string);
+        handleOrderBy(event.target.value)
+    };
+
+    const checkIsStickerObtainedByUser = (code: string) => {
+        return userStickers.some(userSticker => userSticker.code === code)
+    }
+
     return (
         <Grid container spacing={2}>
             <Grid item xs={12}>
-                <div style={{ display: 'grid', gap: 20 }}>
-                    <Typography>
-                        Mis figuritas
-                    </Typography>
-                    <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 6, sm: 12, md: 40 }}>
-                        {stickers.map((sticker, index) => (
-                            <Grid item xs={2} sm={4} md={4} key={index}>
-                                <Item
-                                    onClick={() => handleClickSticker(sticker)}
-                                    style={{ cursor: "pointer", backgroundColor: userStickers.some(userSticker => userSticker.code === sticker.code) ? 'green' : '' }}
-                                >
-                                    <span>{sticker.code}</span>
-                                </Item>
-                            </Grid>
-                        ))}
-                    </Grid>
+                <div style={{ display: 'grid', padding: '0px 0' }}>
+                    <HeaderStickerlist
+                        orderBy={orderBy}
+                        handleChange={handleChange}
+                    />
+                    <div style={{ display: 'grid', padding: '30px 0px', gap: 30 }}>
+                        {orderBy === "all"
+                            ?
+                            <ViewAllStickers
+                                handleClickSticker={handleClickSticker}
+                                checkIsStickerObtainedByUser={checkIsStickerObtainedByUser}
+                                stickers={stickers}
+                            />
+                            :
+                            <ViewStickersByCountry
+                                checkIsStickerObtainedByUser={checkIsStickerObtainedByUser}
+                                handleClickSticker={handleClickSticker}
+                                stickers={stickers}
+                            />
+
+                        }
+                    </div>
                 </div>
             </Grid>
         </Grid>
