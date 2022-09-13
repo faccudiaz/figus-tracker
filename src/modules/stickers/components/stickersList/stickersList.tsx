@@ -6,6 +6,7 @@ import { SelectChangeEvent } from '@mui/material/Select';
 import HeaderStickerlist from './headerStickerList/headerStickerlist';
 import ViewAllStickers from './viewAllStickers/viewAllStickers';
 import ViewStickersByCountry from './viewStickersByCountry/viewStickersByCountry';
+import ViewStickersByGroups from './viewStickersByGroups/viewStickersByGroups';
 
 interface StickersListProps {
     fetchUserStickers: Function,
@@ -65,7 +66,7 @@ const StickersList: React.FC<StickersListProps> = ({
                                 handleClickSticker={handleClickSticker}
                                 stickers={stickers}
                             />
-                                : <></>
+                                : <ViewStickersByGroups stickers={stickers} />
                         }
                     </div>
                 </div>
