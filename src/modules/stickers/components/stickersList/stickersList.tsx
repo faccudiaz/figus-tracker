@@ -32,16 +32,16 @@ const StickersList: React.FC<StickersListProps> = ({
         userStickers.some(userSticker => userSticker.code === sticker.code)
             ? removeUserSticker(sticker)
             : addUserSticker(sticker)
-    }, [])
+    }, [addUserSticker, removeUserSticker, userStickers])
 
     const handleChange = useCallback((event: SelectChangeEvent) => {
         setOrderBy(event.target.value as string);
         handleOrderBy(event.target.value)
-    }, [])
+    }, [handleOrderBy])
 
     const checkIsStickerObtainedByUser = useCallback((code: string) => {
         return userStickers.some(userSticker => userSticker.code === code)
-    }, [])
+    }, [userStickers])
 
     return (
         <Grid container spacing={2}>

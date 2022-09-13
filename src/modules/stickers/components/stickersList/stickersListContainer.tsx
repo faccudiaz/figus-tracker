@@ -30,7 +30,7 @@ const StickersListContainer = () => {
                 // console.log({ arr })
                 setUserStickers([...userStickers, ...arr]);
             }));
-    }, [])
+    }, [userStickers])
 
     const addUserSticker = useCallback(async (sticker: StickerModel) => {
         try {
@@ -42,7 +42,7 @@ const StickersListContainer = () => {
         } catch (e) {
             console.error("Error adding document: ", e);
         }
-    }, [])
+    }, [userStickers])
 
     const removeUserSticker = useCallback(async (sticker: StickerModel) => {
         try {
@@ -54,13 +54,13 @@ const StickersListContainer = () => {
         } catch (e) {
             console.error("Error removing sticker: ", e);
         }
-    }, [])
+    }, [userStickers])
 
-    const handleOrderBy = useCallback((orderBy: string) => {
+    const handleOrderBy = (orderBy: string) => {
         orderBy === 'all' && sortStickersByAll();
         orderBy === 'countries' && sortStickersByCountries();
         // orderBy === 'groups' && sortStickersByGroups();
-    }, [])
+    }
 
     const sortStickersByAll = () => setStickers(mockStickers)
 
