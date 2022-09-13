@@ -1,4 +1,3 @@
-import { Box, Grid } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import Item from '../../../../shared/components/item/item'
 import { StickerModel } from '../stickersListContainer'
@@ -20,7 +19,7 @@ const ViewStickersByCountry: React.FC<ViewStickersByCountryProps> = ({
     useEffect(() => {
         const stickersChunk = sliceIntoChunks(stickers, stickersPerCountry)
         setStickersOfCountries(stickersChunk)
-    }, [])
+    }, [stickers])
 
 
     const sliceIntoChunks = (arr: Array<any>, chunkSize: number) => {

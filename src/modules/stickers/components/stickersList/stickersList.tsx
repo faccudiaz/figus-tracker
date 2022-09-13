@@ -1,6 +1,6 @@
 
-import React, { useState, useEffect } from 'react'
-import { Grid, Typography } from '@mui/material'
+import React, { useEffect } from 'react'
+import { Grid } from '@mui/material'
 import { StickerModel } from './stickersListContainer';
 import { SelectChangeEvent } from '@mui/material/Select';
 import HeaderStickerlist from './headerStickerList/headerStickerlist';
