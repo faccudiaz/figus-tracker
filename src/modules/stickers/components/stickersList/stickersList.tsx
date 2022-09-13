@@ -1,5 +1,5 @@
 
-import React, { useEffect } from 'react'
+import React, { useCallback, useEffect } from 'react'
 import { Grid } from '@mui/material'
 import { StickerModel } from './stickersListContainer';
 import { SelectChangeEvent } from '@mui/material/Select';
@@ -28,20 +28,20 @@ const StickersList: React.FC<StickersListProps> = ({
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
-    const handleClickSticker = async (sticker: StickerModel) => {
+    const handleClickSticker = useCallback(async (sticker: StickerModel) => {
         userStickers.some(userSticker => userSticker.code === sticker.code)
             ? removeUserSticker(sticker)
             : addUserSticker(sticker)
-    }
+    }, [])
 
-    const handleChange = (event: SelectChangeEvent) => {
+    const handleChange = useCallback((event: SelectChangeEvent) => {
         setOrderBy(event.target.value as string);
         handleOrderBy(event.target.value)
-    };
+    }, [])
 
-    const checkIsStickerObtainedByUser = (code: string) => {
+    const checkIsStickerObtainedByUser = useCallback((code: string) => {
         return userStickers.some(userSticker => userSticker.code === code)
-    }
+    }, [])
 
     return (
         <Grid container spacing={2}>
@@ -55,17 +55,17 @@ const StickersList: React.FC<StickersListProps> = ({
                         {orderBy === "all"
                             ?
                             <ViewAllStickers
-                                handleClickSticker={handleClickSticker}
                                 checkIsStickerObtainedByUser={checkIsStickerObtainedByUser}
+                                handleClickSticker={handleClickSticker}
                                 stickers={stickers}
                             />
-                            :
+                            : orderBy === "countries" ?
                             <ViewStickersByCountry
                                 checkIsStickerObtainedByUser={checkIsStickerObtainedByUser}
                                 handleClickSticker={handleClickSticker}
                                 stickers={stickers}
                             />
-
+                                : <></>
                         }
                     </div>
                 </div>
