@@ -18,7 +18,7 @@ root.render(
   // <React.StrictMode>
   <BrowserRouter>
     <ResponsiveAppBar />
-    <div style={{ padding: 50 }}>
+    <div style={{ padding: 25 }}>
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="stickers" element={<StickersPage />} />
