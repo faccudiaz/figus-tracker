@@ -59,12 +59,21 @@ const StickersListContainer = () => {
     const handleOrderBy = (orderBy: string) => {
         orderBy === 'all' && sortStickersByAll();
         orderBy === 'countries' && sortStickersByCountries();
-        // orderBy === 'groups' && sortStickersByGroups();
+        orderBy === 'groups' && sortStickersByGroups();
     }
 
     const sortStickersByAll = () => setStickers(mockStickers)
 
-    // const sortStickersByGroups = () => setStickers(mockStickers)
+    const sortStickersByGroups = () => {
+        const stickersByGroups: StickerModel[] = mockStickers.filter(sticker => 'group' in sticker)
+        // console.log({ stickersOfCountries })
+        setStickers(stickersByGroups.sort((a, b) => {
+            if (typeof a.group === 'undefined' || typeof b.group === 'undefined') {
+                return 0;
+            }
+            return (a.group < b.group ? -1 : 1)
+        }))
+    }
 
     const sortStickersByCountries = () => {
         const stickersOfCountries: StickerModel[] = mockStickers.filter(sticker => 'country' in sticker)
