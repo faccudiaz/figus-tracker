@@ -5,6 +5,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { Typography } from '@mui/material';
+import TransitionsModal from '../../../../shared/components/modal/transitionsModal';
 
 interface HeaderStickerListProps {
     handleChange: (event: SelectChangeEvent) => void
@@ -16,6 +17,9 @@ const HeaderStickerlist: React.FC<HeaderStickerListProps> = ({ handleChange, ord
         <div style={{ display: 'flex', justifyContent: 'space-between', }}>
             <Box sx={{ alignSelf: 'center' }}>
                 <Typography variant='h5'>Mis figuritas</Typography>
+            </Box>
+            <Box sx={{ minWidth: 150 }}>
+                <TransitionsModal />
             </Box>
             <Box sx={{ minWidth: 150 }}>
                 <FormControl fullWidth>
