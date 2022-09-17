@@ -3,7 +3,6 @@ import Box from '@mui/material/Box';
 import { SelectChangeEvent } from '@mui/material/Select';
 import ReorderIcon from '@mui/icons-material/Reorder';
 import SimpleDialog from '../../../../shared/components/dialog/simpleDialog';
-import TransitionsModal from '../../../../shared/components/modal/transitionsModal';
 import { Typography } from '@mui/material';
 
 interface HeaderStickerListProps {
