@@ -66,7 +66,12 @@ const StickersList: React.FC<StickersListProps> = ({
                                 handleClickSticker={handleClickSticker}
                                 stickers={stickers}
                             />
-                                : <ViewStickersByGroups stickers={stickers} />
+                                :
+                                <ViewStickersByGroups
+                                    stickers={stickers}
+                                    checkIsStickerObtainedByUser={checkIsStickerObtainedByUser}
+                                    handleClickSticker={handleClickSticker}
+                                />
                         }
                     </div>
                 </div>
