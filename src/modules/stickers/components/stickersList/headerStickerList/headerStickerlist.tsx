@@ -1,11 +1,10 @@
 import React from 'react'
 import Box from '@mui/material/Box';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
-import { Typography } from '@mui/material';
+import { SelectChangeEvent } from '@mui/material/Select';
+import ReorderIcon from '@mui/icons-material/Reorder';
+import SimpleDialog from '../../../../shared/components/dialog/simpleDialog';
 import TransitionsModal from '../../../../shared/components/modal/transitionsModal';
+import { Typography } from '@mui/material';
 
 interface HeaderStickerListProps {
     handleChange: (event: SelectChangeEvent) => void
@@ -13,29 +12,32 @@ interface HeaderStickerListProps {
 }
 
 const HeaderStickerlist: React.FC<HeaderStickerListProps> = ({ handleChange, orderBy }) => {
+    const [selectedValue, setSelectedValue] = React.useState('');
+    const [open, setOpen] = React.useState(false);
+
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = (value: string) => {
+        setOpen(false);
+        setSelectedValue(value);
+    };
+
     return (
         <div style={{ display: 'flex', justifyContent: 'space-between', }}>
             <Box sx={{ alignSelf: 'center' }}>
-                <Typography variant='h5'>Mis figuritas</Typography>
+                <Typography variant='h6'>Mis figuritas</Typography>
             </Box>
-            <Box sx={{ minWidth: 150 }}>
-                <TransitionsModal />
-            </Box>
-            <Box sx={{ minWidth: 150 }}>
-                <FormControl fullWidth>
-                    <InputLabel id="demo-simple-select-label">Mostrar por</InputLabel>
-                    <Select
-                        labelId="demo-simple-select-label"
-                        id="demo-simple-select"
-                        value={orderBy}
-                        label="Mostrar por"
-                        onChange={handleChange}
-                    >
-                        <MenuItem value={"all"}>Todas</MenuItem>
-                        <MenuItem value={"groups"}>Grupos</MenuItem>
-                        <MenuItem value={"countries"}>Países</MenuItem>
-                    </Select>
-                </FormControl>
+            <Box style={{ display: 'flex', alignItems: 'center' }}>
+                <ReorderIcon onClick={handleClickOpen} />
+                <SimpleDialog
+                    selectedValue={selectedValue}
+                    open={open}
+                    onClose={handleClose}
+                    handleChange={handleChange}
+                    orderBy={orderBy}
+                />
             </Box>
         </div>
     )

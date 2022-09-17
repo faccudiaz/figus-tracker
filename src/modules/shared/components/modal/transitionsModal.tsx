@@ -6,7 +6,7 @@ import Fade from '@mui/material/Fade';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import SearchIcon from '@mui/icons-material/Search';
-import { Grid, TextField } from '@mui/material';
+import { Grid, IconButton, TextField } from '@mui/material';
 import { addUserSticker, fetchStickerByCode, fetchUserStickers, removeUserSticker } from '../../../stickers/services/stickersServices';
 import { StickerModel } from '../../../stickers/components/stickersList/stickersListContainer';
 
@@ -81,8 +81,10 @@ const TransitionsModal = () => {
   }
 
   return (
-    <div>
-      <Button onClick={handleOpen}><SearchIcon />Búsqueda Rápida</Button>
+    <>
+      <IconButton onClick={handleOpen} size="large" aria-label="search" color="inherit">
+        <SearchIcon />
+      </IconButton>
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
@@ -102,7 +104,7 @@ const TransitionsModal = () => {
               </Typography>
               <TextField
                 id="outlined-basic"
-                label="Código Figurita"
+                label="Código"
                 variant="outlined"
                 value={valueSearch}
                 onChange={(e) => setValueSearch(e.target.value)}
@@ -146,7 +148,7 @@ const TransitionsModal = () => {
           </Box>
         </Fade>
       </Modal>
-    </div >
+    </>
   );
 }
 
