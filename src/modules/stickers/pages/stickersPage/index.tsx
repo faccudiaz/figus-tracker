@@ -1,2 +1,2 @@
-import StickersPage from './stickersPageContainer'
-export default StickersPage
+import StickersPage from './stickersPageContainer';
+export default StickersPage;

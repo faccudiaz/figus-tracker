@@ -7,7 +7,7 @@ const StickersPage = () => {
     <Box sx={{ flexGrow: 1 }}>
       <StickersList />
     </Box>
-  )
-}
+  );
+};
 
-export default StickersPage
+export default StickersPage;
