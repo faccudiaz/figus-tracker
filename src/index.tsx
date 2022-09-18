@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import "../node_modules/flag-icons/css/flag-icons.min.css";
+import '../node_modules/flag-icons/css/flag-icons.min.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
@@ -10,9 +10,7 @@ import StickersPage from './modules/stickers/pages/stickersPage';
 // import { ReactReduxFirebaseProvider } from 'react-redux-firebase';
 // import { createFirestoreInstance } from 'redux-firestore';
 
-const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
-);
+const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 
 root.render(
   // <React.StrictMode>

@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import DialogTitle from '@mui/material/DialogTitle';
 import Dialog from '@mui/material/Dialog';
 import { Box } from '@mui/system';
@@ -8,16 +8,21 @@ export interface SimpleDialogProps {
   open: boolean;
   selectedValue: string;
   onClose: (value: string) => void;
-  handleChange: Function,
-  orderBy: string
+  handleChange: Function;
+  orderBy: string;
 }
 
-const SimpleDialog: React.FC<SimpleDialogProps> = ({ onClose, selectedValue, open, orderBy, handleChange }) => {
-
+const SimpleDialog: React.FC<SimpleDialogProps> = ({
+  onClose,
+  selectedValue,
+  open,
+  orderBy,
+  handleChange
+}) => {
   const handleChangeSelect = (e: SelectChangeEvent<string>) => {
-    handleClose()
-    handleChange(e)
-  }
+    handleClose();
+    handleChange(e);
+  };
 
   const handleClose = () => {
     onClose(selectedValue);
@@ -36,14 +41,14 @@ const SimpleDialog: React.FC<SimpleDialogProps> = ({ onClose, selectedValue, ope
             label="Mostrar por"
             onChange={(e) => handleChangeSelect(e)}
           >
-            <MenuItem value={"all"}>Todas</MenuItem>
-            <MenuItem value={"groups"}>Grupos</MenuItem>
-            <MenuItem value={"countries"}>Países</MenuItem>
+            <MenuItem value={'all'}>Todas</MenuItem>
+            <MenuItem value={'groups'}>Grupos</MenuItem>
+            <MenuItem value={'countries'}>Países</MenuItem>
           </Select>
         </FormControl>
       </Box>
     </Dialog>
   );
-}
+};
 
-export default SimpleDialog
+export default SimpleDialog;

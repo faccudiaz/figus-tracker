@@ -1,10 +1,8 @@
-import React from 'react'
-import StickersPage from './stickersPage'
+import React from 'react';
+import StickersPage from './stickersPage';
 
 const StickersPageContainer = () => {
-  return (
-    <StickersPage />
-  )
-}
+  return <StickersPage />;
+};
 
-export default StickersPageContainer
+export default StickersPageContainer;
