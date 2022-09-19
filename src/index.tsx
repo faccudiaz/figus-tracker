@@ -7,8 +7,10 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import ResponsiveAppBar from './modules/shared/components/responsiveAppBar/responsiveAppBar';
 import StickersPage from './modules/stickers/pages/stickersPage';
-// import { ReactReduxFirebaseProvider } from 'react-redux-firebase';
-// import { createFirestoreInstance } from 'redux-firestore';
+import LoginPage from './modules/auth/login/pages/loginPage';
+import Register from './modules/auth/register/register';
+import Reset from './modules/auth/reset/reset';
+import Dashboard from './modules/auth/Dashboard/Dashboard';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 
@@ -19,8 +21,11 @@ root.render(
     <div style={{ padding: 25 }}>
       <Routes>
         <Route path="/" element={<App />} />
+        <Route path="/login" element={<LoginPage />} />
         <Route path="stickers" element={<StickersPage />} />
-        {/* <Route path="invoices" element={<Invoices />} /> */}
+        <Route path="/register" element={<Register />} />
+        <Route path="/reset" element={<Reset />} />
+        <Route path="/dashboard" element={<Dashboard />} />
       </Routes>
     </div>
   </BrowserRouter>
@@ -31,3 +36,5 @@ root.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
+
+// export { }
