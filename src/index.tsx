@@ -11,11 +11,14 @@ import LoginPage from './modules/auth/login/pages/loginPage';
 import Register from './modules/auth/register/register';
 import Reset from './modules/auth/reset/reset';
 import Dashboard from './modules/auth/Dashboard/Dashboard';
+import { Provider } from 'react-redux'
+import store from './store'
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 
 root.render(
   // <React.StrictMode>
+  <Provider store={store}>
   <BrowserRouter>
     <ResponsiveAppBar />
     <div style={{ padding: 25 }}>
@@ -29,6 +32,7 @@ root.render(
       </Routes>
     </div>
   </BrowserRouter>
+  </Provider>
   // </React.StrictMode>
 );
 
