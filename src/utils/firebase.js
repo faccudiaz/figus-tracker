@@ -19,7 +19,7 @@ import {
 
 import * as firebaseUtils from './firebase';
 import { initializeApp } from 'firebase/app';
-import { getAnalytics } from 'firebase/analytics';
+// import { getAnalytics } from 'firebase/analytics';
 // import { getDatabase } from "firebase/database";
 import { getFirestore } from 'firebase/firestore';
 
@@ -41,8 +41,8 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
-console.log({ analytics });
+// const analytics = getAnalytics(app);
+// console.log({ analytics });
 const db = getFirestore(app);
 export default firebaseUtils
 //-------------------
