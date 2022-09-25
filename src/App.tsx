@@ -3,10 +3,10 @@ import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import ResponsiveAppBar from './modules/shared/components/responsiveAppBar/responsiveAppBar';
 import StickersPage from './modules/stickers/pages/stickersPage';
-import LoginPage from './modules/auth/login/pages/loginPage';
-import Register from './modules/auth/register/register';
-import Reset from './modules/auth/reset/reset';
-import Dashboard from './modules/auth/Dashboard/Dashboard';
+import LoginPage from './modules/auth/pages/login/pages/loginPage';
+import Register from './modules/auth/pages/register/register';
+import Reset from './modules/auth/pages/reset/reset';
+import Dashboard from './modules/auth/pages/Dashboard/Dashboard';
 import { Provider } from 'react-redux'
 import store from './store'
 
