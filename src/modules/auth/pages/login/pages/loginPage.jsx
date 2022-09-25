@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Link, useNavigate } from "react-router-dom";
-import { auth, signInWithEmailAndPassword } from "../../../../../utils/firebase";
-import { signInWithGoogle, logInWithEmailAndPassword } from "../../../services/loginService";
+import { auth } from "../../../../../utils/firebase";
+import { loginInWithGoogle, logInWithEmailAndPassword } from "../../../services/loginService";
 import "./login.css";
 import { useDispatch } from 'react-redux';
 import { setUid, setUser } from "../../../redux/authSlice";
@@ -54,7 +54,7 @@ function Login() {
                 >
                     Login
                 </button>
-                <button className="login__btn login__google" onClick={signInWithGoogle}>
+                <button className="login__btn login__google" onClick={loginInWithGoogle}>
                     Login with Google
                 </button>
                 <div>
