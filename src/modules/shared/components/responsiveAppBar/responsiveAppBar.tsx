@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState, useEffect } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -11,15 +11,31 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import TransitionsModal from '../modal/transitionsModal';
 import { logout } from '../../../../utils/firebase';
+import { userSelector } from '../../../auth/redux/selectors';
+import { useDispatch, useSelector } from 'react-redux';
+import { resetUser } from '../../../auth/redux/authSlice';
+import { resetStickersAction } from '../../../stickers/redux/stickersSlice';
 
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 const ResponsiveAppBar = () => {
-  const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
-  const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
+  const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
+  const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
+  const [settings, setSettings] = useState<any[]>([]);
+  const navigate = useNavigate();
+  const user = useSelector(userSelector);
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    if (user !== null) {
+      setSettings(['Profile', 'Account', 'Dashboard', 'Logout'])
+    } else {
+      setSettings(['Login'])
+    }
+  }, [user])
+
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
@@ -35,10 +51,19 @@ const ResponsiveAppBar = () => {
   const handleCloseUserMenu = (setting: string) => {
     setAnchorElUser(null);
     setting === 'Logout' && handleLogout()
+    setting === 'Login' && redirectLoginPage()
   };
+
+  const redirectLoginPage = () => {
+    navigate("/login");
+  }
 
   const handleLogout = () => {
     console.log('Logout')
+    // dispatch(setUser(null))
+    dispatch(resetUser())
+    dispatch(resetStickersAction())
+    navigate("/");
     logout()
   }
 
@@ -96,7 +121,7 @@ const ResponsiveAppBar = () => {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                <Avatar alt={user?.displayName} src="/static/images/avatar/2.jpg" />
               </IconButton>
             </Tooltip>
             <Menu

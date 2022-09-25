@@ -10,6 +10,7 @@ import { Grid, IconButton, TextField } from '@mui/material';
 import {
   addUserSticker,
   fetchStickerByCode,
+  // fetchStickersByUser,
   fetchUserStickers,
   removeUserSticker
 } from '../../../stickers/services/stickersServices';

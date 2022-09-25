@@ -9,12 +9,14 @@ import ViewStickersByGroups from './viewStickersByGroups/viewStickersByGroups';
 
 interface StickersListProps {
   fetchUserStickers: Function;
+  handleFetchStickersByUser: Function;
   fetchAllStickers: Function;
   addUserSticker: Function;
   removeUserSticker: Function;
   userStickers: StickerModel[];
   stickers: StickerModel[];
   handleOrderBy: Function;
+  userUid: string
 }
 
 const StickersList: React.FC<StickersListProps> = ({
@@ -22,15 +24,19 @@ const StickersList: React.FC<StickersListProps> = ({
   stickers,
   fetchAllStickers,
   fetchUserStickers,
+  handleFetchStickersByUser,
   addUserSticker,
   removeUserSticker,
-  handleOrderBy
+  handleOrderBy,
+  userUid
 }) => {
   const [orderBy, setOrderBy] = React.useState('all');
 
   useEffect(() => {
     fetchAllStickers();
-    fetchUserStickers();
+    // fetchUserStickers();
+    // getDocumentIdByUserUid(userUid);
+    handleFetchStickersByUser(userUid);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -53,7 +59,7 @@ const StickersList: React.FC<StickersListProps> = ({
 
   const checkIsStickerObtainedByUser = useCallback(
     (code: string) => {
-      return userStickers.some((userSticker) => userSticker.code === code);
+      return userStickers?.some((userSticker) => userSticker.code === code);
     },
     [userStickers]
   );

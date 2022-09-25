@@ -3,6 +3,9 @@ import React, { useCallback, useState } from 'react';
 import { db } from '../../../../utils/firebase';
 import StickersList from './stickersList';
 import MockV1 from '../../mocks/stickersMockV1.json';
+import { fetchStickersByUser, getDocumentIdByUserUid } from '../../services/stickersServices';
+import { addStickerAction, removeStickerAction, setStickersAction } from '../../redux/stickersSlice';
+import { useDispatch, useSelector } from 'react-redux';
 
 export interface StickerModel {
   code: string;
@@ -15,6 +18,9 @@ const StickersListContainer = () => {
   const mockStickers = [...MockV1];
   const [stickers, setStickers] = useState<StickerModel[]>([]);
   const [userStickers, setUserStickers] = useState<StickerModel[]>([]);
+  const stickersTest = useSelector((state: any) => state.stickers.stickers)
+  const userUid = useSelector((state: any) => state.user.uid)
+  const dispatch = useDispatch()
 
   const fetchAllStickers = useCallback(() => {
     setStickers([...MockV1]);
@@ -24,41 +30,44 @@ const StickersListContainer = () => {
     getDocs(collection(db, 'stickers')).then((querySnapshot) => {
       let arr: any = [];
       querySnapshot.docs.map((doc) => arr.push({ ...doc.data() }));
-      // console.log({ arr })
       setUserStickers([...userStickers, ...arr]);
     });
   }, [userStickers]);
 
+  const handleFetchStickersByUser = async () => {
+    const idDocUser: any = await getDocumentIdByUserUid(userUid)
+    const stickersByUser: any = await fetchStickersByUser(idDocUser);
+    console.log({ stickersByUser })
+    dispatch(setStickersAction(stickersByUser))
+    setUserStickers(stickersByUser);
+  };
+
   const addUserSticker = useCallback(
     async (sticker: StickerModel) => {
       try {
-        await setDoc(doc(db, 'stickers', sticker.code), {
+        await setDoc(doc(db, 'users/' + userUid + '/stickers', sticker.code), {
           ...sticker
         });
-        setUserStickers([...userStickers, sticker]);
+        dispatch(addStickerAction(sticker))
         console.log('stickers written');
       } catch (e) {
         console.error('Error adding document: ', e);
       }
     },
-    [userStickers]
+    [dispatch, userUid]
   );
 
   const removeUserSticker = useCallback(
     async (sticker: StickerModel) => {
       try {
-        await deleteDoc(doc(db, 'stickers', sticker.code));
-        setUserStickers(
-          userStickers.filter(function (userSticker) {
-            return userSticker.code !== sticker.code;
-          })
-        );
+        await deleteDoc(doc(db, 'users/' + userUid + '/stickers', sticker.code));
+        dispatch(removeStickerAction(sticker))
         console.log('sticker removed');
       } catch (e) {
         console.error('Error removing sticker: ', e);
       }
     },
-    [userStickers]
+    [dispatch, userUid]
   );
 
   const handleOrderBy = (orderBy: string) => {
@@ -71,7 +80,6 @@ const StickersListContainer = () => {
 
   const sortStickersByGroups = () => {
     const stickersByGroups: StickerModel[] = mockStickers.filter((sticker) => 'group' in sticker);
-    // console.log({ stickersOfCountries })
     setStickers(
       stickersByGroups.sort((a, b) => {
         if (typeof a.group === 'undefined' || typeof b.group === 'undefined') {
@@ -98,14 +106,17 @@ const StickersListContainer = () => {
   };
 
   return (
+    userUid &&
     <StickersList
       stickers={stickers}
-      userStickers={userStickers}
+      userStickers={stickersTest}
       fetchAllStickers={fetchAllStickers}
       fetchUserStickers={fetchUserStickers}
+      handleFetchStickersByUser={handleFetchStickersByUser}
       addUserSticker={addUserSticker}
       removeUserSticker={removeUserSticker}
       handleOrderBy={handleOrderBy}
+      userUid={userUid}
     />
   );
 };
