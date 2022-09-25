@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Link, useNavigate } from "react-router-dom";
-import {
-    auth,
-    registerWithEmailAndPassword,
-} from "../../../../utils/firebase";
+import { auth } from "../../../../utils/firebase";
 import { loginInWithGoogle } from "../../services/loginService";
+import { registerWithEmailAndPassword } from "../../services/registerService";
 import "./register.css";
 
 function Register() {
