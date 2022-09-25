@@ -1,23 +1,36 @@
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Link, useNavigate } from "react-router-dom";
-import { auth, signInWithEmailAndPassword, signInWithGoogle } from "../../../../utils/firebase";
+import { auth, signInWithEmailAndPassword } from "../../../../../utils/firebase";
+import { signInWithGoogle, logInWithEmailAndPassword } from "../../../services/loginService";
 import "./login.css";
+import { useDispatch } from 'react-redux';
+import { setUid, setUser } from "../../../redux/authSlice";
+
 
 function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [user, loading, error] = useAuthState(auth);
     const navigate = useNavigate();
+    const dispatch = useDispatch()
+
     useEffect(() => {
         if (error) console.log(error)
         if (loading) {
             // maybe trigger a loading screen
             return;
         }
-        if (user) navigate("/dashboard");
+        if (user) handleLoginSuccessful()
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [user, loading]);
+
+    const handleLoginSuccessful = () => {
+        dispatch(setUser(user.providerData[0]))
+        dispatch(setUid(user.uid))
+        navigate("/stickers");
+    }
+
     return (
         <div className="login">
             <div className="login__container">
@@ -37,7 +50,7 @@ function Login() {
                 />
                 <button
                     className="login__btn"
-                    onClick={() => signInWithEmailAndPassword(email, password)}
+                    onClick={() => logInWithEmailAndPassword(email, password)}
                 >
                     Login
                 </button>

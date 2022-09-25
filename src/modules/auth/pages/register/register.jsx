@@ -4,8 +4,8 @@ import { Link, useNavigate } from "react-router-dom";
 import {
     auth,
     registerWithEmailAndPassword,
-    signInWithGoogle,
-} from "../../../utils/firebase";
+} from "../../../../utils/firebase";
+import { loginInWithGoogle } from "../../services/loginService";
 import "./register.css";
 
 function Register() {
@@ -20,7 +20,7 @@ function Register() {
     };
     useEffect(() => {
         if (loading) return;
-        if (user) navigate("dashboard");
+        if (user) navigate("/dashboard");
         if (error) console.log(error)
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [user, loading]);
@@ -53,7 +53,7 @@ function Register() {
                 </button>
                 <button
                     className="register__btn register__google"
-                    onClick={signInWithGoogle}
+                    onClick={loginInWithGoogle}
                 >
                     Register with Google
                 </button>
