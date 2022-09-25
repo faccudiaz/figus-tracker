@@ -1,35 +1,30 @@
 import { createSlice } from '@reduxjs/toolkit'
 
+const initialState = {
+    user: null,
+    uid: ''
+}
+
 export const stickersSlice = createSlice({
-    name: 'counter',
-    initialState: {
-        value: 0,
-        stickers: []
-    },
+    name: 'stickers',
+    initialState: initialState,
     reducers: {
-        increment: (state) => {
-            // Redux Toolkit allows us to write "mutating" logic in reducers. It
-            // doesn't actually mutate the state because it uses the Immer library,
-            // which detects changes to a "draft state" and produces a brand new
-            // immutable state based off those changes
-            state.value += 1
-        },
-        decrement: (state) => {
-            state.value -= 1
-        },
-        incrementByAmount: (state, action) => {
-            state.value += action.payload
-        },
         addStickerAction: (state, action) => {
             state.stickers = [...state.stickers, action.payload]
         },
+        removeStickerAction: (state, action) => {
+            const arrFiltered = state.stickers.filter((sticker) => sticker.code !== action.payload.code);
+            console.log(arrFiltered)
+            state.stickers = arrFiltered
+        },
         setStickersAction: (state, action) => {
             state.stickers = action.payload
-        }
+        },
+        resetStickersAction: () => initialState
     },
 })
 
 // Action creators are generated for each case reducer function
-export const { increment, decrement, incrementByAmount, addStickerAction, setStickersAction } = stickersSlice.actions
+export const { increment, decrement, incrementByAmount, addStickerAction, removeStickerAction, setStickersAction, resetStickersAction } = stickersSlice.actions
 
 export default stickersSlice.reducer
