@@ -8,24 +8,27 @@ import Register from './modules/auth/pages/register/register';
 import Reset from './modules/auth/pages/reset/reset';
 import Dashboard from './modules/auth/pages/Dashboard/Dashboard';
 import { Provider } from 'react-redux'
-import store from './store'
+import { persistor, store } from './store'
+import { PersistGate } from 'redux-persist/integration/react';
 
 function App() {
   return (
     <Provider store={store}>
-      <BrowserRouter>
-        <ResponsiveAppBar />
-        <div style={{ padding: 25 }}>
-          <Routes>
-            <Route path="/" element={<h1>Pagina de inicio</h1>} />
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="stickers" element={<StickersPage />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/reset" element={<Reset />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-          </Routes>
-        </div>
-      </BrowserRouter>
+      <PersistGate loading={null} persistor={persistor}>
+        <BrowserRouter>
+          <ResponsiveAppBar />
+          <div style={{ padding: 25 }}>
+            <Routes>
+              <Route path="/" element={<h1>Pagina de inicio</h1>} />
+              <Route path="/login" element={<LoginPage />} />
+              <Route path="stickers" element={<StickersPage />} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/reset" element={<Reset />} />
+              <Route path="/dashboard" element={<Dashboard />} />
+            </Routes>
+          </div>
+        </BrowserRouter>
+      </PersistGate>
     </Provider>
   );
 }
