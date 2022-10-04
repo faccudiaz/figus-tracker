@@ -37,7 +37,7 @@ const StickersList: React.FC<StickersListProps> = ({
   }, []);
 
   const handleClickSticker = useCallback(
-    async (sticker: StickerModel, userUid: string) => {
+    async (sticker: StickerModel) => {
       userStickers.some((userSticker) => userSticker.code === sticker.code)
         ? removeUserSticker(sticker)
         : addUserSticker(sticker);
