@@ -1,25 +1,23 @@
-import { combineReducers, configureStore } from '@reduxjs/toolkit'
-import stickersReducer from './modules/stickers/redux/stickersSlice'
-import userReducer from './modules/auth/redux/authSlice'
+import { configureStore } from '@reduxjs/toolkit'
 import storage from 'redux-persist/lib/storage';
 import { persistReducer, persistStore } from 'redux-persist';
-import thunk from 'redux-thunk';
+import createSagaMiddleware from 'redux-saga'
+import rootReducer from './root-reducer';
+import rootSaga from './root-saga';
 
 const persistConfig = {
   key: 'root',
   storage,
 }
 
-const rootReducer = combineReducers({
-  stickers: stickersReducer,
-  user: userReducer
-})
-
 const persistedReducer = persistReducer(persistConfig, rootReducer)
+const sagaMiddleware = createSagaMiddleware();
 
 export const store = configureStore({
   reducer: persistedReducer,
-  middleware: [thunk]
+  middleware: [sagaMiddleware]
 })
+
+sagaMiddleware.run(rootSaga)
 
 export const persistor = persistStore(store)
