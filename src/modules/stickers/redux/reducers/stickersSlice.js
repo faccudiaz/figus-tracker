@@ -1,12 +1,13 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createAction, createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
     user: null,
     uid: ''
 }
+const name = 'stickers';
 
 export const stickersSlice = createSlice({
-    name: 'stickers',
+    name: name,
     initialState: initialState,
     reducers: {
         addStickerAction: (state, action) => {
@@ -14,7 +15,6 @@ export const stickersSlice = createSlice({
         },
         removeStickerAction: (state, action) => {
             const arrFiltered = state.stickers.filter((sticker) => sticker.code !== action.payload.code);
-            console.log(arrFiltered)
             state.stickers = arrFiltered
         },
         setStickersAction: (state, action) => {
@@ -25,6 +25,8 @@ export const stickersSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { increment, decrement, incrementByAmount, addStickerAction, removeStickerAction, setStickersAction, resetStickersAction } = stickersSlice.actions
-
+export const { addStickerAction, removeStickerAction, setStickersAction, resetStickersAction } = stickersSlice.actions
+export const fetchStickers = createAction(`${stickersSlice}/fetchStickers`, payload => ({ payload }));
+export const addSticker = createAction(`${stickersSlice}/addSticker`, payload => ({ payload }));
+export const removeSticker = createAction(`${stickersSlice}/removeSticker`, payload => ({ payload }));
 export default stickersSlice.reducer
