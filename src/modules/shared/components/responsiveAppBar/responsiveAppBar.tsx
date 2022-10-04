@@ -12,12 +12,12 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import { Link, useNavigate } from 'react-router-dom';
-import TransitionsModal from '../modal/transitionsModal';
+// import TransitionsModal from '../modal/transitionsModal';
 import { logout } from '../../../../utils/firebase';
 import { userSelector } from '../../../auth/redux/selectors';
 import { useDispatch, useSelector } from 'react-redux';
 import { resetUser } from '../../../auth/redux/authSlice';
-import { resetStickersAction } from '../../../stickers/redux/stickersSlice';
+import { resetStickersAction } from '../../../stickers/redux/reducers/stickersSlice';
 
 
 const ResponsiveAppBar = () => {
@@ -110,7 +110,7 @@ const ResponsiveAppBar = () => {
               </Menu>
             </Box>
             <Box>
-              <TransitionsModal />
+              {/* <TransitionsModal /> */}
             </Box>
             <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
               <Button sx={{ my: 2, color: 'white', display: 'block' }}>

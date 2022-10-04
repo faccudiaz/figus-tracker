@@ -8,11 +8,9 @@ import Typography from '@mui/material/Typography';
 import SearchIcon from '@mui/icons-material/Search';
 import { Grid, IconButton, TextField } from '@mui/material';
 import {
-  addUserSticker,
   fetchStickerByCode,
   // fetchStickersByUser,
   fetchUserStickers,
-  removeUserSticker
 } from '../../../stickers/services/stickersServices';
 import { StickerModel } from '../../../stickers/components/stickersList/stickersListContainer';
 
@@ -64,19 +62,21 @@ const TransitionsModal = () => {
   };
 
   const handleAddUserSticker = async (sticker: StickerModel) => {
-    const data = await addUserSticker(sticker);
-    data.code === 200 && setUserStickers([...userStickers, sticker]);
+    console.log('transitionmodal handleAddUserSticker')
+    // const data = await addUserSticker(sticker);
+    // data.code === 200 && setUserStickers([...userStickers, sticker]);
   };
 
   const handleRemoveUserSticker = async (sticker: StickerModel) => {
-    const data: any = await removeUserSticker(sticker);
-    data.code === 200 &&
-      // console.log('removed success')
-      setUserStickers(
-        userStickers.filter(function (userSticker) {
-          return userSticker.code !== sticker.code;
-        })
-      );
+    console.log('transitionmodal handleRemoveUserSticker')
+    // const data: any = await removeUserSticker(sticker);
+    // data.code === 200 &&
+    //   // console.log('removed success')
+    //   setUserStickers(
+    //     userStickers.filter(function (userSticker) {
+    //       return userSticker.code !== sticker.code;
+    //     })
+    //   );
     // console.log({ data })
   };
 

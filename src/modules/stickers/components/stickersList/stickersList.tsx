@@ -8,7 +8,6 @@ import ViewStickersByCountry from './viewStickersByCountry/viewStickersByCountry
 import ViewStickersByGroups from './viewStickersByGroups/viewStickersByGroups';
 
 interface StickersListProps {
-  fetchUserStickers: Function;
   handleFetchStickersByUser: Function;
   fetchAllStickers: Function;
   addUserSticker: Function;
@@ -23,7 +22,6 @@ const StickersList: React.FC<StickersListProps> = ({
   userStickers,
   stickers,
   fetchAllStickers,
-  fetchUserStickers,
   handleFetchStickersByUser,
   addUserSticker,
   removeUserSticker,
@@ -34,8 +32,6 @@ const StickersList: React.FC<StickersListProps> = ({
 
   useEffect(() => {
     fetchAllStickers();
-    // fetchUserStickers();
-    // getDocumentIdByUserUid(userUid);
     handleFetchStickersByUser(userUid);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
